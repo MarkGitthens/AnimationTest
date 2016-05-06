@@ -1,0 +1,20 @@
+<animation>
+	<name>Hadouken</name>
+	<image>images/ken-sprite-sheet.png</image>
+	<framecount>11</framecount>
+	<loopable>true</loopable>
+	<reversible>true</reversible>
+	<frames>
+		<frame x="11" y="287" width="99" height="103" />
+		<frame x="127" y="296" width="108" height="94" />
+		<frame x="252" y="295" width="109" height="96" />
+		<frame x="380" y="298" width="136" height="90" />
+		<frame x="527" y="296" width="137" height="91" />
+		<frame x="676" y="288" width="133" height="97" />
+		<frame x="823" y="291" width="125" height="96" />
+		<frame x="18" y="413" width="125" height="95" />
+		<frame x="158" y="411" width="125" height="95" />
+		<frame x="290" y="412" width="125" height="92" />
+		<frame x="433" y="411" width="106" height="96" />
+	</frames>
+</animation>
