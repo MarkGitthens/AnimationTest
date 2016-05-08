@@ -1,5 +1,5 @@
 #pragma once
-#include <SDL2\SDL.h>
+#include <SDL.h>
 #include <string>
 #include <tinyxml2.h>
 #include "texture.h"

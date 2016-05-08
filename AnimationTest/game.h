@@ -1,8 +1,8 @@
-#ifndef GAME_H_
-#define GAME_H_
-#include <SDL2\SDL.h>
+#pragma once
+
+#include <SDL.h>
 #include "texture.h"    
-#include <SDL2/SDL_image.h>
+#include <SDL_image.h>
 #include <string>
 #include "anicontroller.h"
 class Game {
@@ -30,4 +30,3 @@ protected:
     SDL_Renderer* gRenderer = nullptr;
     SDL_Window* gWindow = nullptr;
 };
-#endif GAME_H_
