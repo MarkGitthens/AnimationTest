@@ -78,6 +78,7 @@
     <LinkIncremental>true</LinkIncremental>
     <Linkage-tinyxml2>
     </Linkage-tinyxml2>
+    <IncludePath>C:\Users\MarkGitthens\Documents\Visual Studio 2015\Projects\AnimationTest\tinyxml2;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
