@@ -4,21 +4,6 @@
 #include <tinyxml2.h>
 #include "texture.h"
 
-//Frame:
-// functions:
-//     SDL_Rect frameDimensions
-//
-//         Animation :
-// Functions:
-//     int getFrameCount();
-//     string getName();
-//     SDL_Rect getFrame();
-//     bool parseFile(string path);
-// Variables:
-//     Frames[frameCount]
-//         string title
-//         int frameCount
-
 class Animation {
 public:
     Animation() {};
@@ -28,25 +13,6 @@ public:
     SDL_Rect getFrame(int frameNumber) { return frameList[frameNumber]; }
     Texture getTexture() { return spriteSheet; }
 
- /*   <animation>
-        <name>Idle< / name>
-        <image>idle.png< / image>
-        <framecount>10< / framecount>
-        <loopable>true< / loopable>
-        <reversible>true< / reversible>
-        <frames>
-            <frame x = "16" y = "11" width = "79" height = "104" / >
-            <frame x = "110" y = "11" width = "79" height = "104" / >
-            <frame x = "210" y = "8" width = "79" height = "109" / >
-            <frame x = "310" y = "6" width = "79" height = "111" / >
-            <frame x = "407" y = "9" width = "79" height = "113" / >
-            <frame x = "515" y = "9" width = "79" height = "112" / >
-            <frame x = "617" y = "8" width = "79" height = "112" / >
-            <frame x = "720" y = "8" width = "79" height = "111" / >
-            <frame x = "827" y = "8" width = "79" height = "110" / >
-            <frame x = "929" y = "12" width = "79" height = "106" / >
-        < / frames>
-      < / animation>*/
     bool parseFile(std::string path, SDL_Renderer* renderer) {
         tinyxml2::XMLDocument doc;
         doc.LoadFile(path.c_str());

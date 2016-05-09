@@ -15,28 +15,13 @@ void Game::init() {
     IMG_Init(IMG_INIT_PNG);
     playerAnimations.addAnimation("animations/idle.xml", gRenderer);
     playerAnimations.addAnimation("animations/hadouken.xml", gRenderer);
-    playerAnimations.playAnimation("Hadouken");
-    /*playerAnimations.addAnimation("test", Texture("images/ken-sprite-sheet.png", gRenderer), 22, 80, 138, 200);
-    playerAnimations.playAnimation("test");*/
+    playerAnimations.playAnimation("Idle");
     update();
 
     
 
     //TODO: Do error checking to ensure proper initialization of SDL and it's components
 }
-
-//SDL_Texture* Game::loadTexture(std::string path) {
-//    SDL_Surface* tempSurface;
-//    SDL_Texture* newTexture;
-//
-//    tempSurface = SDL_LoadBMP(path.c_str());
-//
-//    newTexture = SDL_CreateTextureFromSurface(gRenderer, tempSurface);
-//    
-//    SDL_FreeSurface(tempSurface);
-//    return newTexture;
-//
-//}
 
 void Game::update() {
     //Set constant think rate to ensure consistent performance.
@@ -78,8 +63,8 @@ void Game::updateAnimations() {
 void Game::render() {
     SDL_RenderClear(gRenderer);
     SDL_Rect renderTo;
-    renderTo.x = win_width / 2 - 64;
-    renderTo.y = win_height / 2 - 64;
+    renderTo.x = win_width / 2 - playerAnimations.getFrame().w /2;
+    renderTo.y = win_height / 2 - playerAnimations.getFrame().h;
     renderTo.w = playerAnimations.getFrame().w;
     renderTo.h = playerAnimations.getFrame().h;
     SDL_RenderCopy(gRenderer, playerAnimations.getTexture().getTexture(), &playerAnimations.getFrame(), &renderTo);

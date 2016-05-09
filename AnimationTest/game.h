@@ -20,7 +20,6 @@ public:
     void update();
 
 private:
-    SDL_Texture* loadTexture(std::string path);
     AnimationController playerAnimations; 
 protected:
     int win_width  = 620;

@@ -1,7 +1,5 @@
 #include "anicontroller.h"
-/*
-    Assuming 5 frames per row in the animation texture
-*/
+
 SDL_Rect AnimationController::getFrame() {
     SDL_Rect frame;
     if (currentState) {
@@ -18,26 +16,13 @@ SDL_Rect AnimationController::getFrame() {
         }
     }
 
-    //frame.w = frameWidth;
-    //frame.h = frameHeight;
-    //frame.x = (currentFrame % 22) * frame.w;
-    //frame.y = 0;
     delayTime = 66;
-    std::cout << animations.at(currentAnimation)->getFrame(currentFrame).x << " " << animations.at(currentAnimation)->getFrame(currentFrame).y << std::endl;
     return animations.at(currentAnimation)->getFrame(currentFrame);
 }
 
 Texture AnimationController::getTexture() {
     return animations.at(currentAnimation)->getTexture();
 }
-
-//void AnimationController::addAnimation(std::string path, Texture animSheet, int frameCount, int w, int h, int frameDelay) {
-//    animations.emplace(path, animSheet);
-//    numFrames = frameCount;
-//    frameWidth = w;
-//    frameHeight = h;
-//    delayTime = frameDelay;
-//}
 
 void AnimationController::addAnimation(std::string aniFile, SDL_Renderer* renderer) {
     Animation* tempAnimation = new Animation();
