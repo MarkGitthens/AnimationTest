@@ -10,14 +10,14 @@
 class AnimationController {
 public:
     SDL_Rect getFrame();
-    Texture getTexture();
+    SDL_Texture* getTexture();
 
     void addAnimation(std::string aniFile, SDL_Renderer* renderer);
     void removeAnimation(std::string);
     void playAnimation(std::string);
     void resumeAnimation();
     void pauseAnimation();
-protected:
+    void setDefault(std::string);
 private:
     enum AnimationStates {
         paused,
@@ -31,8 +31,13 @@ private:
 
     int numFrames = 0;
     int frameWidth, frameHeight;
-    std::string currentAnimation = "Idle";
+    std::string currentAnimation;
     
+    std::string defaultAnimation;
+
+    //Pointer to the current texture used in the animation.
+    SDL_Texture* currentTexture = nullptr;
+
     int currentState = AnimationStates::running;
-    std::map<std::string, Animation*> animations;
+    std::map<std::string, Animation> animations;
 };

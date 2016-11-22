@@ -1,5 +1,6 @@
 #include "game.h"
 
+//TODO: Assumes that there is always an animation that is going to be played. Need to create a default animation that the entity is set to when being erased.
 Game::Game() {
 }
 
@@ -15,11 +16,9 @@ void Game::init() {
     IMG_Init(IMG_INIT_PNG);
     playerAnimations.addAnimation("animations/idle.xml", gRenderer);
     playerAnimations.addAnimation("animations/hadouken.xml", gRenderer);
+    playerAnimations.setDefault("Idle");
     playerAnimations.playAnimation("Idle");
     update();
-
-    
-
     //TODO: Do error checking to ensure proper initialization of SDL and it's components
 }
 
@@ -47,6 +46,9 @@ void Game::handleInput() {
             case SDLK_r:
                 playerAnimations.resumeAnimation();
                 break;
+            case SDLK_h:
+                playerAnimations.playAnimation("Hadouken");
+                break;
             }
         }
     }
@@ -58,8 +60,9 @@ void Game::think() {
 }
 
 void Game::updateAnimations() {
-    
+    //TODO: Use this    
 }
+
 void Game::render() {
     SDL_RenderClear(gRenderer);
     SDL_Rect renderTo;
@@ -67,14 +70,14 @@ void Game::render() {
     renderTo.y = win_height / 2 - playerAnimations.getFrame().h;
     renderTo.w = playerAnimations.getFrame().w;
     renderTo.h = playerAnimations.getFrame().h;
-    SDL_RenderCopy(gRenderer, playerAnimations.getTexture().getTexture(), &playerAnimations.getFrame(), &renderTo);
+    SDL_RenderCopy(gRenderer, playerAnimations.getTexture(), &playerAnimations.getFrame(), &renderTo);
     SDL_RenderPresent(gRenderer);
 }
 
 void Game::destroy() {
     SDL_DestroyRenderer(gRenderer);
     SDL_DestroyWindow(gWindow);
+    IMG_Quit();
     SDL_Quit();
-    //TODO: free memory and quit SDL + dependencies
 }
 

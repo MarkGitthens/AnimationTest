@@ -17,30 +17,31 @@ SDL_Rect AnimationController::getFrame() {
     }
 
     delayTime = 66;
-    return animations.at(currentAnimation)->getFrame(currentFrame);
+    return animations.at(currentAnimation).getFrame(currentFrame);
 }
 
-Texture AnimationController::getTexture() {
-    return animations.at(currentAnimation)->getTexture();
+SDL_Texture* AnimationController::getTexture() {
+    return currentTexture;
 }
 
 void AnimationController::addAnimation(std::string aniFile, SDL_Renderer* renderer) {
-    Animation* tempAnimation = new Animation();
-    tempAnimation->parseFile(aniFile, renderer);
-    std::cout << tempAnimation->getName() << std::endl;
-    std::cout << tempAnimation->getFrame(0).x << std::endl;
-    animations.emplace(tempAnimation->getName(), tempAnimation);
-    
+    Animation temp;
+    temp.parseFile(aniFile, renderer);
+    animations.emplace(temp.getName(), temp);
 }
 
+void AnimationController::setDefault(std::string aniTitle) {
+    defaultAnimation = aniTitle;
+}
 void AnimationController::removeAnimation(std::string name) {
-    //TODO: Fix memory leak;
-        animations.erase(name);
+    animations.erase(name);
+    playAnimation(defaultAnimation);
 }
 
 void AnimationController::playAnimation(std::string name) {
     currentAnimation = name;
-    numFrames = animations.at(currentAnimation)->getFrameCount();
+    currentTexture = animations.at(currentAnimation).getTexture().getTexture();
+    numFrames = animations.at(currentAnimation).getFrameCount();
     startTime = SDL_GetTicks();
 }
 
