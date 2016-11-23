@@ -8,15 +8,12 @@ SDL_Rect AnimationController::getFrame() {
         if (currentTime - startTime >= delayTime) {
             if (currentFrame == numFrames-1) {
                 currentFrame = 0;
-            }
-            else {
+            } else {
                 currentFrame++;
             }
             startTime = currentTime;
         }
     }
-
-    delayTime = 66;
     return animations.at(currentAnimation).getFrame(currentFrame);
 }
 
@@ -34,15 +31,20 @@ void AnimationController::setDefault(std::string aniTitle) {
     defaultAnimation = aniTitle;
 }
 void AnimationController::removeAnimation(std::string name) {
-    animations.erase(name);
-    playAnimation(defaultAnimation);
+    if (animations.count(name)) {
+        animations.erase(name);
+        playAnimation(defaultAnimation);
+    }
 }
 
 void AnimationController::playAnimation(std::string name) {
-    currentAnimation = name;
-    currentTexture = animations.at(currentAnimation).getTexture().getTexture();
-    numFrames = animations.at(currentAnimation).getFrameCount();
-    startTime = SDL_GetTicks();
+    if (currentAnimation != name && animations.count(name)) {
+        currentAnimation = name;
+        delayTime = animations.at(currentAnimation).getFrameDelay();
+        currentTexture = animations.at(currentAnimation).getTexture().getTexture();
+        numFrames = animations.at(currentAnimation).getFrameCount();
+        startTime = SDL_GetTicks();
+    }
 }
 
 void AnimationController::resumeAnimation() {

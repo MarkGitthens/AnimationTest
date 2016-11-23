@@ -12,7 +12,7 @@ public:
     std::string getName() { return title; }
     SDL_Rect getFrame(int frameNumber) { return frameList[frameNumber]; }
     Texture getTexture() { return spriteSheet; }
-
+    int  getFrameDelay() { return frameDelay; }
     bool parseFile(std::string path, SDL_Renderer* renderer) {
         tinyxml2::XMLDocument doc;
         doc.LoadFile(path.c_str());
@@ -22,6 +22,8 @@ public:
         spriteSheet.loadFromPath(animStart->FirstChildElement("image")->GetText(), renderer);
         animStart->FirstChildElement("framecount")->QueryIntText(&frameCount);
         std::cout << frameCount << std::endl;
+        animStart->FirstChildElement("framedelay")->QueryIntText(&frameDelay);
+        std::cout << frameDelay << std::endl;
 
         tinyxml2::XMLElement* frameNode = animStart->FirstChildElement("frames");
         
@@ -42,6 +44,7 @@ public:
 private:
     Texture spriteSheet;
     SDL_Rect *frameList;
+    int frameDelay = 66;
     std::string title;
     int frameCount;
 };

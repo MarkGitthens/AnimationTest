@@ -2,6 +2,7 @@
 	<name>Hadouken</name>
 	<image>images/ken-sprite-sheet.png</image>
 	<framecount>11</framecount>
+	<framedelay>66</framedelay>
 	<loopable>true</loopable>
 	<reversible>true</reversible>
 	<frames>

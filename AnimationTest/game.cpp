@@ -46,6 +46,9 @@ void Game::handleInput() {
             case SDLK_r:
                 playerAnimations.resumeAnimation();
                 break;
+            case SDLK_q:
+                playerAnimations.removeAnimation("Hadouken");
+                break;
             case SDLK_h:
                 playerAnimations.playAnimation("Hadouken");
                 break;
