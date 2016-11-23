@@ -18,13 +18,11 @@ public:
         doc.LoadFile(path.c_str());
         tinyxml2::XMLElement* animStart = doc.FirstChildElement("animation");
         title = animStart->FirstChildElement("name")->GetText();
-        std::cout << title << std::endl;
         spriteSheet.loadFromPath(animStart->FirstChildElement("image")->GetText(), renderer);
         animStart->FirstChildElement("framecount")->QueryIntText(&frameCount);
-        std::cout << frameCount << std::endl;
-        animStart->FirstChildElement("framedelay")->QueryIntText(&frameDelay);
-        std::cout << frameDelay << std::endl;
 
+        animStart->FirstChildElement("framedelay")->QueryIntText(&frameDelay);
+       
         tinyxml2::XMLElement* frameNode = animStart->FirstChildElement("frames");
         
         tinyxml2::XMLElement* frameElement = frameNode->FirstChildElement("frame");
@@ -34,8 +32,6 @@ public:
             frameList[i].y = frameElement->IntAttribute("y");
             frameList[i].w = frameElement->IntAttribute("width");
             frameList[i].h = frameElement->IntAttribute("height");
-
-            std::cout << frameList[i].x << ", " << frameList[i].y << std::endl;
         
             frameElement = frameElement->NextSiblingElement("frame");
         }
